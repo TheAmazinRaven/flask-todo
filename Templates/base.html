@@ -3,33 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <title>To Do App</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
 </head>
 <body>
     <h1>To Do App</h1>
 
-    <form action="">
+    <form action="/add" method="post">
         <div>
-            <label for="title">Todo Title</label>
+            <label for="title">
+                Todo Title
                 <input type="text" name="title" placeholder="Enter Todo...">
-                <br>
+            </label>
+            <br>
                 <button type="submit">
                  Add
                 </button>
         </div>
     </form>
 
-    {% for todo in todo_list %}
-        <p>{{ todo.id }} | {{  todo.title }}</p>
+     {% for todo in todo_list %}
+        <div class="ui segment">
+            <p class="ui big header">{{todo.id }} | {{ todo.title }}</p>
 
-        {% if todo.complete == False %}
-            <span>
-            Not Complete
-            </span>
-        {%  else %}
-            <span>
-            Complete
-            </span>
-        {% endif %}
-    {% endfor %}
+            {% if todo.complete == False %}
+            <span class="ui gray label">Not Complete</span>
+            {% else %}
+            <span class="ui green label">Completed</span>
+            {% endif %}
+
+            <a class="ui blue button" href="/update/{{ todo.id }}">Update</a>
+            <a class="ui red button" href="/delete/{{ todo.id }}">Delete</a>
+        </div>
+        {% endfor %}
+
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
 </body>
 </html>
