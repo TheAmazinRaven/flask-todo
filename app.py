@@ -14,7 +14,10 @@ class Todo(db.Model):  # class for todo items
     id = db.Column(db.Integer, primary_key=True)   # for each entry needs a column, unique value for each to do item created
     title = db.Column(db.String(100))
     complete = db.Column(db.Boolean)
+    # added from disco
 
+with app.app_context():
+        db.create_all()
 
 @app.route("/")
 def home():
